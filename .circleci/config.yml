@@ -93,7 +93,12 @@ jobs:
           command: |
             cd frontend
             npm run build
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   test-frontend:
     docker:
@@ -221,7 +226,12 @@ jobs:
                --data ${PUBLIC_DNS} \
                https://api.memstash.io/values/public_dns
       - destroy-aws-resource
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   deploy-backend:
     docker:
@@ -255,7 +265,12 @@ jobs:
             ansible-playbook -i ./inventory deploy.yml
       - revert-migration
       - destroy-aws-resource
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   deploy-frontend:
     docker:
@@ -284,7 +299,12 @@ jobs:
           command: |
             aws s3 cp ./frontend/dist s3://udapeople-s3bucket-${CIRCLE_WORKFLOW_ID}/ --recursive
       - destroy-aws-resource
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   smoke-test:
     docker:
@@ -322,7 +342,12 @@ jobs:
             fi
       - revert-migration
       - destroy-aws-resource
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   delete-old-infrastructure:
     docker:
@@ -353,7 +378,12 @@ jobs:
               aws cloudformation delete-stack --stack-name udapeople-backend-${OLD_CIRCLE_WORKFLOW_ID}
             fi
       - destroy-aws-resource
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
 workflows:
   frontend:
