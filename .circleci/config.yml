@@ -115,7 +115,12 @@ jobs:
           command: |
             cd frontend
             npm run test
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   analyze-frontend:
     docker:
@@ -132,7 +137,12 @@ jobs:
           command: |
             cd frontend
             npm audit fix --audit-level=critical --force
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   build-backend:
     docker:
@@ -149,7 +159,12 @@ jobs:
           command: |
             cd backend
             npm run build
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   test-backend:
     docker:
@@ -166,7 +181,12 @@ jobs:
           command: |
             cd backend
             npm run test
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   analyze-backend:
     docker:
@@ -183,7 +203,12 @@ jobs:
           command: |
             cd backend
             npm audit fix --audit-level=critical --force
-      - slack/status
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   create-new-infrastructure:
     docker:
