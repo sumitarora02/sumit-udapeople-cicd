@@ -358,79 +358,79 @@ jobs:
 workflows:
   frontend:
     jobs:
-      - hello
-        #  filters:
-        #    branches:
-        #      ignore: master
+      - hello:
+          filters:
+            branches:
+              ignore: main
       - build-frontend:
           requires:
             - hello
           filters:
             branches:
-              ignore: master
+              ignore: main
       - test-frontend:
           requires:
             - build-frontend
           filters:
             branches:
-              ignore: master
+              ignore: main
       - analyze-frontend:
           requires:
             - test-frontend
           filters:
             branches:
-              ignore: master
+              ignore: main
   backend:
     jobs:
-      - hello
-       #   filters:
-       #     branches:
-       #       ignore: master
+      - hello:
+          filters:
+            branches:
+              ignore: main
       - build-backend:
           requires:
             - hello
           filters:
             branches:
-              ignore: master
+              ignore: main
       - test-backend:
           requires:
             - build-backend
           filters:
             branches:
-              ignore: master
+              ignore: main
       - analyze-backend:
           requires:
             - test-backend
           filters:
             branches:
-              ignore: master
+              ignore: main
   deploy:
     jobs:
       - create-new-infrastructure:
           filters:
             branches:
-              only: master
+              only: main
       - deploy-backend:
           requires:
             - create-new-infrastructure
           filters:
             branches:
-              only: master
+              only: main
       - deploy-frontend:
           requires:
             - deploy-backend
           filters:
             branches:
-              only: master
+              only: main
       - smoke-test:
           requires:
             - deploy-frontend
           filters:
             branches:
-              only: master
+              only: main
       - delete-old-infrastructure:
           requires:
             - smoke-test
           filters:
             branches:
-              only: master
+              only: main
