@@ -1,7 +1,5 @@
 - name: "build package"
   shell: |
-    chmod 777 /home/ubuntu/backend
-    cp /home/ubuntu/backend/package.json /home/ubuntu/package.json
     cd /home/ubuntu/backend
     npm run build
 
