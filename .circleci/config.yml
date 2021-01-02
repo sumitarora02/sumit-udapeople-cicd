@@ -253,8 +253,8 @@ jobs:
             printenv >> ./backend/.env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory deploy.yml
-      #- revert-migration
-      #- destroy-aws-resource
+      - revert-migration
+      - destroy-aws-resource
       - slack/status
 
   deploy-frontend:
