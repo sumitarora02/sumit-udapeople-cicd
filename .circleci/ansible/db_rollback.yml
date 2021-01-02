@@ -23,5 +23,5 @@
   gather_facts: true
 
   roles:
-    - configure-server
+    #- configure-server
     - db-rollback
