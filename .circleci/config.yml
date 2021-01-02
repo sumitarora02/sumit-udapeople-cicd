@@ -253,6 +253,7 @@ jobs:
             printenv >> ./backend/.env
             cd .circleci/ansible/
             ansible-playbook -i ./inventory deploy.yml
+          no_output_timeout: 30m
       #- revert-migration
       #- destroy-aws-resource
       - slack/status
