@@ -126,7 +126,7 @@ jobs:
           name: Analyze the code
           command: |
             cd frontend
-            npm audit fix --audit-level=critical --force
+            npm auditing fixing --audit-level=critical --force
       - slack/status
 
   build-backend:
@@ -143,7 +143,7 @@ jobs:
           name: Compile the code
           command: |
             cd backend
-            npm run build installing
+            npm run build
       - slack/status
 
   test-backend:
@@ -160,7 +160,7 @@ jobs:
           name: Test the code
           command: |
             cd backend
-            npm run test
+            npm run testing123
       - slack/status
 
   analyze-backend:
