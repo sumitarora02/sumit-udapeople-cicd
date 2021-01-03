@@ -185,19 +185,10 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      # - run:
-      #     name: Delete all S3 buckets whose names start with 'udapeople-s3bucket-'
-      #     command: |
-      #       OLD_BUCKET=$(aws s3api list-buckets --query "Buckets[?starts_with(Name, 'udapeople-s3bucket-')].Name" --output text)
-      #       for bucket in ${OLD_BUCKET}
-      #       do  
-      #           echo deleting bucket $bucket
-      #           aws s3 rb --force s3://$bucket
-      #       done
       - run:
           name: Create/Update frontend infrastructure via AWS CloudFormation
           command: |
-            aws cloudformation deploy \
+            aws cloudformation123 deploy \
               --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID} \
               --template-file .circleci/files/frontend.yml \
               --region ${AWS_DEFAULT_REGION} \
@@ -205,7 +196,7 @@ jobs:
       - run:
           name: Create/Update backend infrastructure via AWS CloudFormation
           command: |
-            aws cloudformation deploy \
+            aws cloudformation123 deploy \
               --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID} \
               --template-file .circleci/files/backend.yml \
               --region ${AWS_DEFAULT_REGION} \
