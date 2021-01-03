@@ -188,7 +188,7 @@ jobs:
       - run:
           name: Create/Update frontend infrastructure via AWS CloudFormation
           command: |
-            aws cloudformation123 deploy \
+            aws cloudformation deploy \
               --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID} \
               --template-file .circleci/files/frontend.yml \
               --region ${AWS_DEFAULT_REGION} \
@@ -196,7 +196,7 @@ jobs:
       - run:
           name: Create/Update backend infrastructure via AWS CloudFormation
           command: |
-            aws cloudformation123 deploy \
+            aws cloudformation deploy \
               --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID} \
               --template-file .circleci/files/backend.yml \
               --region ${AWS_DEFAULT_REGION} \
