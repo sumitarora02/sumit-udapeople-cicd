@@ -1,0 +1,16 @@
+# This file will reside under alertmanager.
+# You will need to get the webhook url for your slack, follow instruction mentioned on below link to get it:
+# https://grafana.com/blog/2020/02/25/step-by-step-guide-to-setting-up-prometheus-alertmanager-with-slack-pagerduty-and-gmail/
+
+global:
+  resolve_timeout: 1m
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+
+receivers:
+  - name: 'slack-notifications'
+    slack_configs:
+    - channel: '#udapeople'
+      send_resolved: true
